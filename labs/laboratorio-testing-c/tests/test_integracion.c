@@ -11,19 +11,41 @@
  *  PARTE D — Escribir el test guiado (ver README.md, Parte 8)
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-/* TODO: escribir test_compra_con_descuento() siguiendo la guia del .md */
+void test_compra_con_descuento(void) {
+    printf("\n[compracondescuento]\n");
+    Carrito c;
+    carrito_init(&c);
+    Producto p = {"Leche",350,2};
+    Producto l = {"Pan",200,3};
+    carrito_agregar(&c,p);
+    carrito_agregar(&c,l);
+    ASSERT_IGUAL(1300,carrito_total(&c));
+    ASSERT_IGUAL(1170,carrito_descuento(carrito_total(&c),10));
+}
 
 /* ═══════════════════════════════════════════════════════════════════════════
  *  PARTE E — Disenar un test propio (ver README.md, Parte 9)
  * ═══════════════════════════════════════════════════════════════════════════ */
 
-/* TODO: escribir test_agregar_hasta_llenar() */
+void test_agregar_hasta_llenar(void) {
+    printf("\n[agregarhastallenar]\n");
+    Carrito c;
+    carrito_init(&c);
+    Producto h={"Harina",100,1};
+    carrito_agregar(&c,h);
+    carrito_agregar(&c,h);
+    carrito_agregar(&c,h);
+    carrito_agregar(&c,h);
+    ASSERT_IGUAL(MAX_ITEMS,carrito_contar(&c)); // conteo max items
+    ASSERT_IGUAL(0,carrito_agregar(&c,h)); // agregar uno mas devuelve 0
+    ASSERT_IGUAL(MAX_ITEMS,carrito_contar(&c)); // conteo sigue siendo max items
+}
 
 int main(void) {
     printf("=== Tests de integracion ===");
     /* Descomentar a medida que agregues las funciones: */
-    /* test_compra_con_descuento();  */
-    /* test_agregar_hasta_llenar();  */
+    test_compra_con_descuento();
+    test_agregar_hasta_llenar();
     RESUMEN();
     return EXIT_CODE();
 }
