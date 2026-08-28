@@ -1,6 +1,6 @@
 # Laboratorio: Introducción a Bison
 
-**Nombre:** ___________________________
+**Nombre:** Thiago Nicolas Marquez
 
 ## Verificación y calificación
 
