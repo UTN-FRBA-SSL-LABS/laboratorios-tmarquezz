@@ -277,7 +277,7 @@ Los tests de `IsEmpty` ya están activos en `StringTest.c`. Corré `make test` y
 
 **P1** — `IsEmpty` podría haberse escrito también como `return s[0] == '\0'`. ¿Son equivalentes? ¿Por qué?
 
-> R:
+> R: Si, lo son, ya que ambas formas desreferencian el puntero para acceder al mismo lugar de la memoria.
 
 ---
 
@@ -328,14 +328,14 @@ make test
 
 **P2** — ¿Qué hace `s + 1`? ¿Por qué avanza al siguiente carácter y no al siguiente byte?
 
-> R:
+> R: S es un puntero a char y el tipo ocupa exactamente 1 byte, hacer s + 1 mueve el puntero 1 byte hacia adelante, osea al siguiente carácter.
 
 **P3** — Si llamaras a `GetLength(NULL)`, ¿qué pasaría? ¿Por qué las precondiciones del contrato dicen `s != NULL`?
 
-> R:
+> R: El programa aborta con un Segmentation Fault. Al pasar NULL, GetLength llama a IsEmpty(NULL)e intenta hacer *s == '\0'. Intentar desreferenciar un puntero el cual es nulo es un acceso inválido a memoria.
 
 ```
-GETLENGTH_PASA=
+GETLENGTH_PASA= SI
 ```
 _(escribí SI cuando todos los tests de GetLength pasen)_
 
